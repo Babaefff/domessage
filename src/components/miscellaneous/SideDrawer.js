@@ -81,7 +81,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`${process.env.REACT_APP_ENDPOINT}/api/user?search=${search}`, config);
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
@@ -213,7 +213,7 @@ const SideDrawer = () => {
             {loading ? (
               <ChatLoading />
             ) : (
-              Array.from(searchResult)?.map((user) => (
+              searchResult?.map((user) => (
                 <UserListItem
                   key={user._id}
                   user={user}
